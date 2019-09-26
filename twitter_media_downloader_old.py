@@ -1,7 +1,11 @@
 # WIP
 
 import os
+import signal
+import sys
 from pathlib import Path
+from pickle import dump
+from pickle import load
 from queue import Queue
 from re import compile
 from threading import Thread
@@ -150,6 +154,18 @@ class Twitter(object):
                     if len(urls) > 200:
                         sleep(self.sleeptimer)
 
+    def sigterm_handler(self, signal, frame):
+        self.dump_queue()
+        sys.exit(0)
+
+    def dump_queue(self):
+        with open("queue", "w") as file:
+            dump(self.queue, file, protocol=4, fix_imports=False)
+
+    def load_queue(self):
+        with open("queue", "r") as file:
+            self.queue = load(file, fix_imports=False, encoding="bytes")
+
     def downloader(self):
         if not self.download_folder.is_dir():
             self.download_folder.mkdir()
@@ -174,5 +190,6 @@ class Twitter(object):
 
     def start(self):
         os.system("clear")
+        signal.signal(signal.SIGTERM, self.sigterm_handler)
         Thread(target=self.downloader).start()
         self.crawler()

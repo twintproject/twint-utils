@@ -3,9 +3,9 @@ from re import compile
 from time import sleep
 from urllib.parse import urlparse
 
-import requests
 import youtube_dl
 from bs4 import BeautifulSoup
+from requests import get
 
 
 def get_soup(html):
@@ -23,7 +23,7 @@ def photo_downloader(urls, download_location):
             Chrome/74.0.3729.169 Safari/537.36'}
     for tweet in urls:
         try:
-            result = requests.get(tweet, headers)
+            result = get(tweet, headers)
         except Exception as e:
             continue
         if result.status_code is 200:
@@ -36,7 +36,7 @@ def photo_downloader(urls, download_location):
                 path = str(Path(download_location, file_name))
                 if not Path(path).is_file():
                     with open(path, "wb") as file:
-                        file.write(requests.get(photo_url).content)
+                        file.write(get(photo_url).content)
         else:
             continue
 
@@ -95,7 +95,3 @@ def download_photos(tweets_obj, download_location):
 def download_videos(tweets_obj, download_location):
     video_urls = get_video_urls(tweets_obj)
     video_downloader(video_urls, download_location)
-
-
-def scrape_user():
-    pass

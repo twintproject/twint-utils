@@ -1,6 +1,6 @@
 import twint
 
-from twint_utils import media_downloader
+from twint_utils.tweets import media_downloader
 
 account = "twitter"
 

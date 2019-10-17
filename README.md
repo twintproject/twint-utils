@@ -7,7 +7,7 @@ Mufos.py uses Twint to detect a given seed accounts mutual followers. It can be 
 ## Media Downloader
 accepts twint.output.tweets_list as an argument. 
 ```python
-from twint_utils import media_downloader
+from twint_utils.tweets import media_downloader
 
 tweets = twint.output.tweets_list                              
 location = "./"

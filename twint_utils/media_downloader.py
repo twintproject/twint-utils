@@ -1,3 +1,5 @@
+# Author: Philip Woldhek (11philip22)
+
 from pathlib import Path
 from re import compile
 from time import sleep

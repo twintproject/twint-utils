@@ -17,3 +17,6 @@ media_downloader.download_videos(get_tweets(tweets), location)
 
 ## Link Counter (link_counter.py)
 This code takes a list of twitter usernames, iterates over them to find tweets where they shared links, and then sums up the base URLs of everyones links combined and turns it into a matplotlib bar graph. Please check code documentation for usage guidance. The code does take a bit to run depending on your tweet limit and how many accounts you pull.  Non-coder friendly hosted version [here](https://colab.research.google.com/drive/1AGgt2Qm2LThNAKeBsnbKRXgWgPc9kFN9).
+
+## Related Hashtags Detector (related_hashtags.py)
+This notebook finds other hashtags that are most commonly found with a given hashtag and creates a bar graph of them. This can be used to track how disinformation campaigns or stories are happening. Non-coder friendly hosted version [here](https://colab.research.google.com/drive/1dNSxohTBgNox0IiaGwqv66eFyxKBABHx).
